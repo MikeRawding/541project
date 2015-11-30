@@ -27,7 +27,7 @@ Not For Distribution
 #include <chrono>  //benchmarking
 
 
-/*--Definitions--*/
+/*--DEFINITIONS--*/
 
 struct query;
 enum command {INSERT, SELECT, UPDATE, DEL, TRANSFER, EXIT};
@@ -207,6 +207,7 @@ void readBlob(std::string path, SAString& blobData) {
 		file.read(memblock, size);
 		file.close();
 		blobData = SAString(memblock, size);
+		delete[] memblock;
 	}
 	else {
 		std::cout << "Could not read BLob" << std::endl;
@@ -322,7 +323,7 @@ void delUp(SAConnection& con, std::string q1, std::string q2) {
 	}
 }//delUp
 
-/*--Transfer--*/
+/*--TRANSFER--*/
 void transfer(SAConnection& con) {
 	SACommand cmd1;
 	SACommand cmd2;
